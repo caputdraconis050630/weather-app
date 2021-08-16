@@ -20,10 +20,10 @@ class _CityScreenState extends State<CityScreen> {
         constraints: BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
-            children: <Widget>[
+            children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {},
                   child: Icon(
                     Icons.arrow_back_ios,
@@ -35,7 +35,7 @@ class _CityScreenState extends State<CityScreen> {
                 padding: EdgeInsets.all(20.0),
                 child: null,
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {},
                 child: Text(
                   'Get Weather',

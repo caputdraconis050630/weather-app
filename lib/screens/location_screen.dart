@@ -24,18 +24,18 @@ class _LocationScreenState extends State<LocationScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
+            children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  FlatButton(
+                children: [
+                  TextButton(
                     onPressed: () {},
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
                     ),
                   ),
-                  FlatButton(
+                  TextButton(
                     onPressed: () {},
                     child: Icon(
                       Icons.location_city,
@@ -47,7 +47,7 @@ class _LocationScreenState extends State<LocationScreen> {
               Padding(
                 padding: EdgeInsets.only(left: 15.0),
                 child: Row(
-                  children: <Widget>[
+                  children: [
                     Text(
                       '32°',
                       style: kTempTextStyle,
