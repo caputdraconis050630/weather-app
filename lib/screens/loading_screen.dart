@@ -8,6 +8,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 const apiKey = 'b468dd02ba53798b4e7c26626255b0b3';
 
 class LoadingScreen extends StatefulWidget {
+
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -34,16 +35,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
       "lat" : latitude.toString(),
       "lon" : longtitude.toString(),
       "appid" : apiKey,
+      "units": "metric",
     });
 
     NetworkHelper networkHelper = NetworkHelper(url : uri.toString());
 
     var weatherData = await networkHelper.getData();
     Navigator.push(context, MaterialPageRoute(builder: (context){
-      return LocationScreen();
+      return LocationScreen(locationalWeather: weatherData,);
     }));
 
-    print(weatherData);
+    // print(weatherData);
 
   }
 
