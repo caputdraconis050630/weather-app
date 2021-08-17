@@ -5,6 +5,7 @@ import 'package:weather_project/services/networking.dart';
 import 'location_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
+
 const apiKey = 'b468dd02ba53798b4e7c26626255b0b3';
 
 class LoadingScreen extends StatefulWidget {
