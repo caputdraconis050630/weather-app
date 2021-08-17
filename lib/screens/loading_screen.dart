@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 
+import 'package:flutter/material.dart';
+import 'package:weather_project/services/location.dart';
+import 'package:http/http.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,17 +9,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-
-  void getLocation() async{]
-    try{
-    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.low);
-    print(position);
-    }
-    catch (e){
-      print(e);
-  }
-}
-
   @override
   void initState() {
     // TODO: implement initState
@@ -26,8 +16,33 @@ class _LoadingScreenState extends State<LoadingScreen> {
     getLocation();
   }
 
+  void getLocation() async{
+    Location location  = Location();
+    await location.getCurrentLocation();
+    print(location.latitude);
+    print(location.longtitude);
+
+    getData();
+  }
+
+  void getData() async{
+    Uri url = Uri.https('api.openweathermap.org', 'data/2.5/weather',{
+      'lat': '35',
+      'lon': '139',
+      'appid' : 'b468dd02ba53798b4e7c26626255b0b3'
+    });
+
+    Response response = await get(url);
+    print(response.body);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold();
   }
 }
+
+
+
+
