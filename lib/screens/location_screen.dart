@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weather_project/utilities/constants.dart';
 import 'package:weather_project/services/weather.dart';
 
+
 class LocationScreen extends StatefulWidget {
 
   LocationScreen({required this.locationalWeather});
@@ -26,15 +27,19 @@ class _LocationScreenState extends State<LocationScreen> {
     print(widget.locationalWeather);
   }
 
-  void updateUI(dynamic weatherData){
-    double temp = weatherData['main']['temp'];
-    temperature = temp.toInt();
-    var condition = weatherData['weather'][0]['id'];
-    weatherIcon = weather.getWeatherIcon(condition);
-    weatherMessage = weather.getMessage(temperature!);
+  void updateUI(Future<dynamic> weatherData){
 
-    cityName = weatherData['name'];
-    print(temperature);
+    setState(() {
+      double temp = weatherData['main']['temp'];
+      temperature = temp.toInt();
+      var condition = weatherData['weather'][0]['id'];
+      weatherIcon = weather.getWeatherIcon(condition);
+      weatherMessage = weather.getMessage(temperature!);
+
+      cityName = weatherData['name'];
+      print(temperature);
+    });
+
 
   }
 
@@ -60,7 +65,15 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                    onPressed: () {},
+                    onPressed: ()  {
+                      setState((){
+                        var weatherData = weather.getLocationWeather();
+                        updateUI(weatherData);
+                      });
+
+
+
+                    },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
